@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.rentalRoutes = void 0;
+const express_1 = require("express");
+const rental_controller_1 = require("../controllers/rental.controller");
+const rentalRoutes = (0, express_1.Router)();
+exports.rentalRoutes = rentalRoutes;
+const rentalController = new rental_controller_1.RentalController();
+rentalRoutes.post('/', (req, res) => rentalController.create(req, res));
+rentalRoutes.post('/:id/complete', (req, res) => rentalController.complete(req, res));

@@ -4,19 +4,12 @@ import tseslint from 'typescript-eslint';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default [
-  // Pastas que o ESLint não deve analisar
   {
-    ignores: [
-      'dist/**',
-      'node_modules/**',
-      'generated/**',
-      'coverage/**',
-    ],
+    ignores: ['dist/**', 'node_modules/**', 'generated/**', 'coverage/**'],
   },
 
-  // Arquivos analisados pelo ESLint
   {
-    files: ['**/*.{js,mjs,cjs,ts}'],
+    files: ['src/**/*.ts'],
 
     languageOptions: {
       globals: {
@@ -26,12 +19,7 @@ export default [
     },
   },
 
-  // Regras JavaScript
   pluginJs.configs.recommended,
-
-  // Regras TypeScript
   ...tseslint.configs.recommended,
-
-  // Integração com Prettier
   eslintPluginPrettierRecommended,
 ];

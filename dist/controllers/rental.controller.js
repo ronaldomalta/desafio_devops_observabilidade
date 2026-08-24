@@ -10,11 +10,18 @@ class RentalController {
     async create(req, res) {
         try {
             const { userId, carId, startDate, endDate } = req.body;
-            const rental = await this.rentalService.createRental({ userId, carId, startDate, endDate });
+            const rental = await this.rentalService.createRental({
+                userId,
+                carId,
+                startDate,
+                endDate,
+            });
             return res.status(201).json(rental);
         }
         catch (error) {
-            return res.status(400).json({ error: error.message });
+            return res.status(400).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
     async complete(req, res) {
@@ -24,7 +31,9 @@ class RentalController {
             return res.json(result);
         }
         catch (error) {
-            return res.status(400).json({ error: error.message });
+            return res.status(400).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
 }

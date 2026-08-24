@@ -10,11 +10,18 @@ class CarController {
     async create(req, res) {
         try {
             const { brand, model, licensePlate, dailyRate } = req.body;
-            const car = await this.carService.createCar({ brand, model, licensePlate, dailyRate });
+            const car = await this.carService.createCar({
+                brand,
+                model,
+                licensePlate,
+                dailyRate,
+            });
             return res.status(201).json(car);
         }
         catch (error) {
-            return res.status(400).json({ error: error.message });
+            return res.status(400).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
     async getAll(req, res) {
@@ -24,7 +31,9 @@ class CarController {
             return res.json(cars);
         }
         catch (error) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
 }

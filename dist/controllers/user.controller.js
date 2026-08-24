@@ -10,11 +10,17 @@ class UserController {
     async create(req, res) {
         try {
             const { name, email, driverLicense } = req.body;
-            const user = await this.userService.createUser({ name, email, driverLicense });
+            const user = await this.userService.createUser({
+                name,
+                email,
+                driverLicense,
+            });
             return res.status(201).json(user);
         }
         catch (error) {
-            return res.status(400).json({ error: error.message });
+            return res.status(400).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
     async getAll(req, res) {
@@ -23,7 +29,9 @@ class UserController {
             return res.json(users);
         }
         catch (error) {
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json({
+                error: error instanceof Error ? error.message : 'Erro desconhecido',
+            });
         }
     }
 }

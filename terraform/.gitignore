@@ -3,3 +3,16 @@
 *.tfstate.backup
 *.tfplan
 .terraform.lock.hcl
+
+# Arquivos de estado e variáveis do Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+
+# Chaves de acesso privadas baixadas
+*.pem
+*.ppk
+*.pen
